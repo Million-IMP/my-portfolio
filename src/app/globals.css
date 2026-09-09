@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+:root {
+  /* habix.ai warm craft tone 디자인 시스템 색상 변수 */
+  --background: #f2eadb;
+  --foreground: #2c241e;
+  --accent: #d8532d;
+  --accent-ink: #ffffff;
+  --ink: #2c241e;
+  --ink-muted: #73685e;
+  --card: #faf5ec;
+  --line: #ded4c2;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-bg: #f2eadb;
+  --color-bg-soft: #f8f2e7;
+  --color-bg-deep: #e9ddca;
+  --color-accent: #d8532d;
+  --color-accent-ink: #ffffff;
+  --color-ink: #2c241e;
+  --color-ink-muted: #73685e;
+  --color-muted: #73685e;
+  --color-card: #faf5ec;
+  --color-line: #ded4c2;
+  --font-sans: 'Noto Sans KR', var(--font-geist-sans), sans-serif;
+  --font-mono: 'IBM Plex Mono', var(--font-geist-mono), monospace;
+  --font-serif: 'Noto Serif KR', Georgia, "Times New Roman", serif;
+  --font-display: 'Oswald', sans-serif;
+}
+
+/* 부드러운 스크롤 동작 설정 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 기본 본문 스타일 설정: 배경색, 폰트 색상, 기본 폰트 */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* 텍스트 선택 시 강조 색상 설정 */
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+
+/* 커스텀 스크롤바 스타일 - 웹킷(크롬, 사파리, 엣지 등) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-ink);
+}
+
+/* 파이어폭스 스크롤바 스타일 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-muted) var(--color-bg-deep);
+}
+
+/* 수동 토글(localStorage) 및 시스템 설정 기반 다크모드 변수 */
+.dark,
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --color-bg: #1a1410;
+    --color-bg-soft: #211a14;
+    --color-bg-deep: #2a2018;
+    --color-ink: #f2eadb;
+    --color-muted: #a89580;
+    --color-card: #211a14;
+    --color-line: rgba(242,234,219,0.15);
+    --color-footer: #0f0c09;
+    --color-accent: #e8633d;
+  }
+}
+
+.dark {
+  --color-bg: #1a1410;
+  --color-bg-soft: #211a14;
+  --color-bg-deep: #2a2018;
+  --color-ink: #f2eadb;
+  --color-muted: #a89580;
+  --color-card: #211a14;
+  --color-line: rgba(242,234,219,0.15);
+  --color-footer: #0f0c09;
+  --color-accent: #e8633d;
+}
+
