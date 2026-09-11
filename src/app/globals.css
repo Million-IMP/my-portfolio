@@ -74,6 +74,16 @@ body {
   scrollbar-color: var(--color-muted) var(--color-bg-deep);
 }
 
+/* 커스텀 커서 사용을 위해 기본 커서 숨김 (마우스 사용 환경에서만) */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, input, select, textarea, [role="button"], .cursor-pointer {
+    cursor: none !important;
+  }
+}
+
 /* 수동 토글(localStorage) 및 시스템 설정 기반 다크모드 변수 */
 .dark,
 @media (prefers-color-scheme: dark) {

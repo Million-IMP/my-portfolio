@@ -63,11 +63,15 @@ export const metadata: Metadata = {
 };
 
 // 루트 레이아웃 컴포넌트
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="ko"
-      className={`${notoSansKr.variable} ${ibmPlexMono.variable} h-full antialiased`}
+      className={`${notoSansKr.variable} ${ibmPlexMono.variable} scroll-smooth`}
     >
       <head>
         {/* Noto Serif KR 및 Oswald 웹폰트 로드 */}

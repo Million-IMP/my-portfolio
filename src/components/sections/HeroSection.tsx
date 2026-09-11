@@ -4,6 +4,7 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { Button } from '@/components/ui/Button';
 import { ArrowRight, FileText } from 'lucide-react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function HeroSection() {
   return (
@@ -27,13 +28,28 @@ export default function HeroSection() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.1}>
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium leading-[1.1] text-ink tracking-tight">
-              Crafting<br />
-              <span className="text-muted italic">Digital</span><br />
+          <motion.h1 
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { 
+                opacity: 1, 
+                transition: { staggerChildren: 0.2, delayChildren: 0.1 } 
+              }
+            }}
+            className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium leading-[1.1] text-ink tracking-tight flex flex-col gap-2"
+          >
+            <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="block">
+              Crafting
+            </motion.span>
+            <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-muted italic block">
+              Digital
+            </motion.span>
+            <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="block">
               Experiences.
-            </h1>
-          </ScrollReveal>
+            </motion.span>
+          </motion.h1>
 
           <ScrollReveal delay={0.2}>
             <p className="text-lg md:text-xl text-muted max-w-xl font-sans leading-relaxed">
