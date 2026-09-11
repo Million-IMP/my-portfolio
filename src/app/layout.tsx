@@ -20,7 +20,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 // 포트폴리오 웹사이트 메타데이터 및 Open Graph 설정
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000'),
+  metadataBase: new URL('https://my-portfolio-teal-zeta-57.vercel.app'),
   title: "JK | Portfolio",
   description:
     "사용자 경험을 코드로 설계하는 풀스택 개발자 JK의 포트폴리오입니다. 직관적이고 완성도 높은 웹 애플리케이션을 제작합니다.",
