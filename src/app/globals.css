@@ -78,27 +78,31 @@ body {
 .dark,
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --color-bg: #1a1410;
-    --color-bg-soft: #211a14;
-    --color-bg-deep: #2a2018;
-    --color-ink: #f2eadb;
-    --color-muted: #a89580;
-    --color-card: #211a14;
-    --color-line: rgba(242,234,219,0.15);
-    --color-footer: #0f0c09;
+    --color-bg: #14100c;
+    --color-bg-soft: #1d1712;
+    --color-bg-deep: #261e18;
+    --color-ink: #ffffff; /* 완전한 흰색으로 가장 밝게 */
+    --color-ink-muted: #dcd3c9; /* 기존 보조 텍스트보다 훨씬 더 밝은 회백색/베이지 */
+    --color-muted: #dcd3c9; /* 가독성을 위해 밝기 대폭 상향 */
+    --color-card: #1d1712;
+    --color-line: rgba(255, 255, 255, 0.15);
+    --color-footer: #0a0806;
     --color-accent: #e8633d;
+    --color-accent-ink: #ffffff;
   }
 }
 
 .dark {
-  --color-bg: #1a1410;
-  --color-bg-soft: #211a14;
-  --color-bg-deep: #2a2018;
-  --color-ink: #f2eadb;
-  --color-muted: #a89580;
-  --color-card: #211a14;
-  --color-line: rgba(242,234,219,0.15);
-  --color-footer: #0f0c09;
+  --color-bg: #14100c;
+  --color-bg-soft: #1d1712;
+  --color-bg-deep: #261e18;
+  --color-ink: #ffffff;
+  --color-ink-muted: #dcd3c9;
+  --color-muted: #dcd3c9;
+  --color-card: #1d1712;
+  --color-line: rgba(255, 255, 255, 0.15);
+  --color-footer: #0a0806;
   --color-accent: #e8633d;
+  --color-accent-ink: #ffffff;
 }
 

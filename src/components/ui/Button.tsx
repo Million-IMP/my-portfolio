@@ -59,8 +59,8 @@ export function Button({
   // 변형별 스타일 (primary는 solid와 동일한 악센트 스타일 적용)
   const isSolid = variant === "solid" || variant === "primary";
   const variantStyle = isSolid
-    ? "bg-accent text-accent-ink border border-accent hover:translate-y-[-3px] hover:opacity-95"
-    : "border border-current bg-transparent text-ink hover:translate-y-[-3px]";
+    ? "bg-accent text-accent-ink border-2 border-accent hover:translate-y-[-3px] hover:shadow-lg"
+    : "border-2 border-accent text-accent bg-transparent hover:bg-accent hover:text-accent-ink hover:translate-y-[-3px] hover:shadow-lg";
 
   // 크기별 추가 스타일
   const sizeStyle =

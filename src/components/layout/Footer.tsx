@@ -20,7 +20,7 @@ export default function Footer() {
           {/* 링크 영역 */}
           <div>
             <h4 className="font-mono text-xs uppercase tracking-widest text-muted mb-6">Quick Links</h4>
-            <ul className="space-y-4 font-sans text-sm">
+            <ul className="space-y-4 font-sans text-sm text-muted">
               <li><Link href="#about" className="hover:text-accent transition-colors">About</Link></li>
               <li><Link href="#skills" className="hover:text-accent transition-colors">Skills</Link></li>
               <li><Link href="#projects" className="hover:text-accent transition-colors">Projects</Link></li>
