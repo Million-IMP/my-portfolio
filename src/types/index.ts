@@ -28,6 +28,8 @@ export interface Project {
   liveUrl?: string;
   /** GitHub 저장소 URL (선택) */
   githubUrl?: string;
+  /** 여러 사이트로 구성된 프로젝트일 때, 사이트별 링크 목록 (선택) */
+  siteLinks?: { label: string; url: string }[];
   /** 주요 프로젝트 여부 */
   featured: boolean;
 }

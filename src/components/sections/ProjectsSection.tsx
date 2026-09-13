@@ -78,10 +78,28 @@ export default function ProjectsSection() {
                       <h3 className="font-display text-2xl text-ink mb-3 group-hover:text-accent transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-muted text-sm line-clamp-3 mb-6 font-sans flex-1 leading-relaxed">
+                      <p className="text-muted text-sm line-clamp-3 mb-4 font-sans flex-1 leading-relaxed">
                         {project.description}
                       </p>
-                      
+
+                      {/* 여러 사이트로 구성된 프로젝트의 사이트별 링크 */}
+                      {project.siteLinks && project.siteLinks.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {project.siteLinks.map((site) => (
+                            <a
+                              key={site.url}
+                              href={site.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 font-mono text-[10px] text-muted border border-line rounded px-2 py-1 hover:text-accent hover:border-accent transition-colors"
+                            >
+                              {site.label}
+                              <ExternalLink size={10} />
+                            </a>
+                          ))}
+                        </div>
+                      )}
+
                       {/* 기술 태그 */}
                       <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-line">
                         {project.tags.slice(0, 4).map(tech => (
