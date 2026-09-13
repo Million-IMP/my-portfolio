@@ -2,6 +2,12 @@ import { ProfileData } from "@/types";
 
 /**
  * 기본 프로필 정보 데이터
+ *
+ * 현재 Hero/About/Footer/Contact 섹션은 각자 텍스트를 하드코딩하고 있어
+ * 이 값과 실제 화면에 보이는 내용(GitHub/블로그 URL 등)이 서로 다르다.
+ * 콘텐츠(실명/실링크) 확정 작업 시 이 파일을 단일 소스로 삼아
+ * 각 섹션이 여기서 import하도록 정리할 것 — 지금은 구조만 우선 정비하는 단계라
+ * 서로 다른 값 중 무엇이 맞는지 결정하는 콘텐츠 교체는 포함하지 않는다.
  */
 export const profileData: ProfileData = {
   name: "JK",
@@ -13,7 +19,8 @@ export const profileData: ProfileData = {
   ],
   email: "contact@jk.dev",
   location: "Seoul, South Korea",
-  resumeUrl: "/resume.pdf",
+  // public/resume.pdf가 아직 없어 undefined로 둠 — 실제 PDF를 추가하면 "/resume.pdf"로 복원
+  resumeUrl: undefined,
   socialLinks: [
     {
       platform: "GitHub",

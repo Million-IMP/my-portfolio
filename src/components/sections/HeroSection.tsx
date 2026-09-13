@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { ArrowRight, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { profileData } from '@/data/profile';
 
 export default function HeroSection() {
   return (
@@ -62,9 +63,12 @@ export default function HeroSection() {
             <Button as={Link} href="#contact" variant="primary" size="lg" icon={<ArrowRight size={18} />}>
               연락하기
             </Button>
-            <Button as={Link} href="/resume.pdf" target="_blank" variant="outline" size="lg" icon={<FileText size={18} />}>
-              이력서 보기
-            </Button>
+            {/* 실제 이력서 파일이 준비되기 전까지는 버튼을 숨겨 404 링크를 방지 */}
+            {profileData.resumeUrl && (
+              <Button as={Link} href={profileData.resumeUrl} target="_blank" variant="outline" size="lg" icon={<FileText size={18} />}>
+                이력서 보기
+              </Button>
+            )}
           </ScrollReveal>
         </div>
 

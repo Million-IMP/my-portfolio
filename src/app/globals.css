@@ -1,30 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  /* habix.ai warm craft tone 디자인 시스템 색상 변수 */
+  /* habix.ai warm craft tone 디자인 시스템 색상 변수 (raw 값 — 다크모드는 이 raw 변수들을 오버라이드) */
   --background: #f2eadb;
   --foreground: #2c241e;
+  --bg: #f2eadb;
+  --bg-soft: #f8f2e7;
+  --bg-deep: #e9ddca;
   --accent: #d8532d;
   --accent-ink: #ffffff;
   --ink: #2c241e;
-  --ink-muted: #73685e;
+  --muted: #73685e;
   --card: #faf5ec;
   --line: #ded4c2;
+  --footer: #e9ddca;
 }
 
+/*
+ * @theme inline은 Tailwind 유틸리티(.bg-accent 등)를 var(--color-x)가 아니라
+ * 여기 적힌 값 그대로 빌드타임에 굳혀버린다. 그래서 --color-*를 리터럴로 적으면
+ * 아래 .dark { --color-accent: ... } 오버라이드가 유틸리티 클래스에는 전혀 반영되지 않는
+ * (body { color: var(--color-ink) }처럼 var()를 직접 쓰는 곳만 반응하는) 문제가 생긴다.
+ * 반드시 raw 변수(--bg, --accent 등)를 var()로 참조해야 다크모드 오버라이드가 실제로 적용됨.
+ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-bg: #f2eadb;
-  --color-bg-soft: #f8f2e7;
-  --color-bg-deep: #e9ddca;
-  --color-accent: #d8532d;
-  --color-accent-ink: #ffffff;
-  --color-ink: #2c241e;
-  --color-ink-muted: #73685e;
-  --color-muted: #73685e;
-  --color-card: #faf5ec;
-  --color-line: #ded4c2;
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-bg-deep: var(--bg-deep);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--muted);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-footer: var(--footer);
   --font-sans: 'Noto Sans KR', var(--font-geist-sans), sans-serif;
   --font-mono: 'IBM Plex Mono', var(--font-geist-mono), monospace;
   --font-serif: 'Noto Serif KR', Georgia, "Times New Roman", serif;
@@ -74,45 +86,49 @@ body {
   scrollbar-color: var(--color-muted) var(--color-bg-deep);
 }
 
-/* 커스텀 커서 사용을 위해 기본 커서 숨김 (마우스 사용 환경에서만) */
-@media (pointer: fine) {
-  body {
-    cursor: none;
-  }
-  a, button, input, select, textarea, [role="button"], .cursor-pointer {
-    cursor: none !important;
-  }
+/* 커스텀 커서가 실제로 마운트되어 동작 중일 때만 네이티브 커서를 숨김.
+   (CustomCursor.tsx가 isVisible이 된 시점에만 html에 이 클래스를 붙임 —
+   마운트 전/reduced-motion/터치 환경에서 커서가 사라지는 사고를 방지) */
+html.custom-cursor-active {
+  cursor: none;
+}
+html.custom-cursor-active a,
+html.custom-cursor-active button,
+html.custom-cursor-active input,
+html.custom-cursor-active select,
+html.custom-cursor-active textarea,
+html.custom-cursor-active [role="button"],
+html.custom-cursor-active .cursor-pointer {
+  cursor: none !important;
 }
 
-/* 수동 토글(localStorage) 및 시스템 설정 기반 다크모드 변수 */
-.dark,
+/* 시스템 설정 기반 다크모드 변수 (수동 토글이 없을 때, 라이트 강제 선택도 없을 때만) */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --color-bg: #14100c;
-    --color-bg-soft: #1d1712;
-    --color-bg-deep: #261e18;
-    --color-ink: #ffffff; /* 완전한 흰색으로 가장 밝게 */
-    --color-ink-muted: #dcd3c9; /* 기존 보조 텍스트보다 훨씬 더 밝은 회백색/베이지 */
-    --color-muted: #dcd3c9; /* 가독성을 위해 밝기 대폭 상향 */
-    --color-card: #1d1712;
-    --color-line: rgba(255, 255, 255, 0.15);
-    --color-footer: #0a0806;
-    --color-accent: #e8633d;
-    --color-accent-ink: #ffffff;
+    --bg: #14100c;
+    --bg-soft: #1d1712;
+    --bg-deep: #261e18;
+    --ink: #ffffff; /* 완전한 흰색으로 가장 밝게 */
+    --muted: #dcd3c9; /* 가독성을 위해 밝기 대폭 상향 */
+    --card: #1d1712;
+    --line: rgba(255, 255, 255, 0.15);
+    --footer: #0a0806;
+    --accent: #e8633d;
+    --accent-ink: #ffffff;
   }
 }
 
+/* 수동 토글(localStorage, Header.tsx가 <html>에 .dark를 붙임) 기반 다크모드 변수 */
 .dark {
-  --color-bg: #14100c;
-  --color-bg-soft: #1d1712;
-  --color-bg-deep: #261e18;
-  --color-ink: #ffffff;
-  --color-ink-muted: #dcd3c9;
-  --color-muted: #dcd3c9;
-  --color-card: #1d1712;
-  --color-line: rgba(255, 255, 255, 0.15);
-  --color-footer: #0a0806;
-  --color-accent: #e8633d;
-  --color-accent-ink: #ffffff;
+  --bg: #14100c;
+  --bg-soft: #1d1712;
+  --bg-deep: #261e18;
+  --ink: #ffffff;
+  --muted: #dcd3c9;
+  --card: #1d1712;
+  --line: rgba(255, 255, 255, 0.15);
+  --footer: #0a0806;
+  --accent: #e8633d;
+  --accent-ink: #ffffff;
 }
 

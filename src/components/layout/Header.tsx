@@ -56,6 +56,9 @@ export default function Header() {
     const shouldBeDark = saved === 'dark' || (!saved && prefersDark);
     setIsDark(shouldBeDark);
     document.documentElement.classList.toggle('dark', shouldBeDark);
+    // OS가 다크를 선호해도 사용자가 명시적으로 라이트를 저장한 경우
+    // globals.css의 `:root:not(.light)` 시스템-다크 오버라이드를 무력화하기 위해 필요
+    document.documentElement.classList.toggle('light', saved === 'light');
   }, []);
 
   // 다크모드 수동 토글
@@ -64,6 +67,7 @@ export default function Header() {
     setIsDark(next);
     localStorage.setItem('theme', next ? 'dark' : 'light');
     document.documentElement.classList.toggle('dark', next);
+    document.documentElement.classList.toggle('light', !next);
   };
 
   return (

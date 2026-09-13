@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR, IBM_Plex_Mono } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 // 한글 본문 기본 폰트 설정 (Noto Sans KR)
@@ -20,7 +21,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 // 포트폴리오 웹사이트 메타데이터 및 Open Graph 설정
 export const metadata: Metadata = {
-  metadataBase: new URL('https://my-portfolio-teal-zeta-57.vercel.app'),
+  metadataBase: new URL(SITE_URL),
   title: "JK | Portfolio",
   description:
     "사용자 경험을 코드로 설계하는 풀스택 개발자 JK의 포트폴리오입니다. 직관적이고 완성도 높은 웹 애플리케이션을 제작합니다.",
@@ -39,26 +40,20 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://jk.dev",
+    url: SITE_URL,
     title: "JK | Portfolio",
     description:
       "사용자 경험을 코드로 설계하는 풀스택 개발자 JK의 포트폴리오입니다.",
     siteName: "JK | Portfolio",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "JK Portfolio Preview",
-      },
-    ],
+    // og:image는 별도로 지정하지 않음 — src/app/opengraph-image.tsx가 파일 기반 규칙으로
+    // 자동 생성해 주입하므로, 존재하지 않는 /og-image.png를 여기서 다시 참조하면 깨진 링크가 됨
   },
   twitter: {
     card: "summary_large_image",
     title: "JK | Portfolio",
     description:
       "사용자 경험을 코드로 설계하는 풀스택 개발자 JK의 포트폴리오입니다.",
-    images: ["/og-image.png"],
+    // twitter:image도 opengraph-image.tsx의 자동 생성 결과를 그대로 사용
   },
 };
 

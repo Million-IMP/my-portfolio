@@ -13,7 +13,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="inline-flex items-center gap-2 min-h-[52px] px-8 font-bold bg-[#d8532d] text-white hover:bg-[#b04223] disabled:opacity-60 disabled:cursor-not-allowed transition-all hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+      className="inline-flex items-center gap-2 min-h-[52px] px-8 font-bold bg-accent text-accent-ink hover:brightness-90 disabled:opacity-60 disabled:cursor-not-allowed transition-all hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
     >
       {pending ? (
         <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />발송 중...</>
@@ -42,26 +42,26 @@ export default function ContactSection() {
           {/* 좌측: 안내 문구 + 연락처 정보 */}
           <div>
             <ScrollReveal>
-              <p className="font-mono text-sm tracking-widest text-[#d8532d] uppercase mb-6">04 · Contact</p>
+              <p className="font-mono text-sm tracking-widest text-accent uppercase mb-6">04 · Contact</p>
               <h2 className="font-serif text-5xl md:text-6xl font-medium leading-tight mb-8">함께 일할<br />준비가 되었습니다</h2>
               <p className="text-[#f2eadb]/80 font-sans text-lg mb-12 max-w-md leading-relaxed">
                 새로운 도전을 찾고 있습니다. 프로젝트 제안, 기술 논의, 혹은 가벼운 커피챗도 환영합니다.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-[#f2eadb]/20">
                 <div className="flex flex-col gap-2">
-                  <Mail className="text-[#d8532d]" size={20} />
+                  <Mail className="text-accent" size={20} />
                   <span className="font-mono text-xs text-[#f2eadb]/50 uppercase tracking-wider">Email</span>
                   <span className="text-sm">contact@jk.dev</span>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <MapPin className="text-[#d8532d]" size={20} />
+                  <MapPin className="text-accent" size={20} />
                   <span className="font-mono text-xs text-[#f2eadb]/50 uppercase tracking-wider">Location</span>
                   <span className="text-sm">Seoul, Korea</span>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <GitBranch className="text-[#d8532d]" size={20} />
+                  <GitBranch className="text-accent" size={20} />
                   <span className="font-mono text-xs text-[#f2eadb]/50 uppercase tracking-wider">GitHub</span>
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[#d8532d] transition-colors">github.com/jk</a>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-accent transition-colors">github.com/jk</a>
                 </div>
               </div>
             </ScrollReveal>
@@ -81,27 +81,37 @@ export default function ContactSection() {
               )}
 
               <form action={formAction} className="flex flex-col gap-5">
+                {/* 허니팟: 실제 사용자에게는 보이지 않지만 봇은 채우는 경우가 많아 스팸 방지용으로 사용.
+                    브라우저 자동완성이 값을 채워넣지 않도록 "company" 같은 흔한 토큰 대신 임의 이름 사용 */}
+                <input
+                  type="text"
+                  name="hp_field"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute left-[-9999px] w-px h-px opacity-0"
+                />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="flex flex-col gap-2">
                     <label htmlFor="name" className="font-mono text-xs text-[#f2eadb]/60 uppercase tracking-wider">이름 *</label>
                     <input id="name" name="name" type="text" required placeholder="홍길동"
-                      className="bg-[#f2eadb]/5 border border-[#f2eadb]/20 text-[#f2eadb] placeholder:text-[#f2eadb]/30 px-4 py-3 text-sm focus:outline-none focus:border-[#d8532d] transition-colors" />
+                      className="bg-[#f2eadb]/5 border border-[#f2eadb]/20 text-[#f2eadb] placeholder:text-[#f2eadb]/30 px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors" />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="email" className="font-mono text-xs text-[#f2eadb]/60 uppercase tracking-wider">이메일 *</label>
                     <input id="email" name="email" type="email" required placeholder="example@email.com"
-                      className="bg-[#f2eadb]/5 border border-[#f2eadb]/20 text-[#f2eadb] placeholder:text-[#f2eadb]/30 px-4 py-3 text-sm focus:outline-none focus:border-[#d8532d] transition-colors" />
+                      className="bg-[#f2eadb]/5 border border-[#f2eadb]/20 text-[#f2eadb] placeholder:text-[#f2eadb]/30 px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors" />
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="subject" className="font-mono text-xs text-[#f2eadb]/60 uppercase tracking-wider">제목</label>
                   <input id="subject" name="subject" type="text" placeholder="프로젝트 협업 문의"
-                    className="bg-[#f2eadb]/5 border border-[#f2eadb]/20 text-[#f2eadb] placeholder:text-[#f2eadb]/30 px-4 py-3 text-sm focus:outline-none focus:border-[#d8532d] transition-colors" />
+                    className="bg-[#f2eadb]/5 border border-[#f2eadb]/20 text-[#f2eadb] placeholder:text-[#f2eadb]/30 px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="message" className="font-mono text-xs text-[#f2eadb]/60 uppercase tracking-wider">메시지 *</label>
                   <textarea id="message" name="message" required rows={5} placeholder="안녕하세요. 협업 제안드리고 싶어서 연락드립니다..."
-                    className="bg-[#f2eadb]/5 border border-[#f2eadb]/20 text-[#f2eadb] placeholder:text-[#f2eadb]/30 px-4 py-3 text-sm focus:outline-none focus:border-[#d8532d] transition-colors resize-none" />
+                    className="bg-[#f2eadb]/5 border border-[#f2eadb]/20 text-[#f2eadb] placeholder:text-[#f2eadb]/30 px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors resize-none" />
                 </div>
                 <SubmitButton />
               </form>
@@ -116,9 +126,9 @@ export default function ContactSection() {
             <div className="grid grid-cols-1 md:grid-cols-3 border-t border-[#f2eadb]/20">
               {faqs.map((faq, idx) => (
                 <details key={idx} className="group border-b border-r border-[#f2eadb]/20 last:border-r-0">
-                  <summary className="flex cursor-pointer items-start justify-between gap-4 p-6 font-medium list-none hover:text-[#d8532d] transition-colors">
+                  <summary className="flex cursor-pointer items-start justify-between gap-4 p-6 font-medium list-none hover:text-accent transition-colors">
                     <span>{faq.q}</span>
-                    <span className="shrink-0 text-[#d8532d] text-xl font-light transition-transform duration-300 group-open:rotate-45">+</span>
+                    <span className="shrink-0 text-accent text-xl font-light transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
                   <p className="px-6 pb-6 text-[#f2eadb]/70 text-sm leading-relaxed">{faq.a}</p>
                 </details>
